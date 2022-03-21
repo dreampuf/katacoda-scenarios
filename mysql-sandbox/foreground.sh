@@ -3,7 +3,7 @@ docker pull mysql/mysql-server:latest
 docker run \
   --name=mysql1 \
   -d \
-  -v /opt/mysql:/var/lib/mysql
+  -v /opt/mysql:/var/lib/mysql \
   -p 3306:3306 \
   mysql/mysql-server:latest \
   --datadir=/var/lib/mysql \
