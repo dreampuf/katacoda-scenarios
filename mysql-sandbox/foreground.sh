@@ -3,8 +3,13 @@ docker pull mysql/mysql-server:latest
 docker run \
   --name=mysql1 \
   -d \
+  -v /opt/mysql:/var/lib/mysql
   -p 3306:3306 \
-  mysql/mysql-server:latest
+  mysql/mysql-server:latest \
+  --datadir=/var/lib/mysql
+  --user=mysql \
+  --server-id=1 \
+  --log-bin=/var/lib/mysql/mysql-bin.log
 while [ "`docker inspect --format='{{.State.Health.Status}}' mysql1`" != "healthy" ]; do
   echo "Starting server..."
   sleep 5
