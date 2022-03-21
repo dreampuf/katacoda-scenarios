@@ -4,7 +4,7 @@
   "difficulty": "intermediate",
   "time": 30,
   "backend": {
-    "imageid": "ubuntu"
+    "imageid": "hx-mysql"
   },
   "details": {
     "intro": {"text": "intro.md"},
