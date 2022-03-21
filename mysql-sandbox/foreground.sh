@@ -28,7 +28,7 @@ docker exec mysql1 \
 export MYSQL_HOST=0.0.0.0
 export MYSQL_PWD=password
 
-apt-get update && apt-get install -Vy mariadb-client-core-10.3 < "/dev/null"
+apt-get update && apt-get install -Vy mariadb-client- < "/dev/null"
 DIR=`pwd`
 cd /tmp && wget http://downloads.mysql.com/docs/sakila-db.zip && unzip sakila-db.zip
 mysql --user admin < sakila-db/sakila-schema.sql
