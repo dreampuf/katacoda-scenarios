@@ -16,7 +16,7 @@
       "client": [
         {"file": "*.csv", "target": "~/"},
         {"file": "*.ipynb", "target": "~/"},
-        {"file": "*.jar", "target": "~/"},
+        {"file": "*.jar", "target": "~/"}
       ]
     }
   },
