@@ -8,7 +8,7 @@
   },
   "details": {
     "intro": {"text": "intro.md", "courseData": "background.sh", "code": "foreground.sh"},
-    "finish": {"text": "finish.md"},
+    "finish": {"text": "finish.md", "credit": "Here we can provide **credit** to others such as a link to a https://github.com/dreampuf repo"},
     "steps": [
       {"title":  "Step 1", "text":  "step1.md"}
     ],
