@@ -6,7 +6,7 @@
   "code": "foreground.sh",
   "time": 30,
   "backend": {
-    "imageid": "hx-mysql"
+    "imageid": "ubuntu:2004"
   },
   "details": {
     "intro": {"text": "intro.md"},
