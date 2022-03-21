@@ -17,7 +17,7 @@ done
 MYSQL_PASSWORD=$(docker logs mysql1 2>&1 | grep GENERATED | cut -d ' ' -f5)
 docker exec -e MYSQL_PASSWORD=$MYSQL_PASSWORD mysql1 \
   mysql --connect-expired-password -uroot -p$MYSQL_PASSWORD \
-  -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';"
+  -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';"
 cat <<EOF >/tmp/setup.sql
 CREATE USER 'admin'@'%' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON * . * TO 'admin'@'%';
@@ -28,7 +28,7 @@ docker exec mysql1 \
 export MYSQL_HOST=0.0.0.0
 export MYSQL_PWD=password
 
-apt-get update && apt-get install -Vy mysql-client-core-5.7 < "/dev/null"
+apt-get update && apt-get install -Vy mariadb-client-core-10.3 < "/dev/null"
 DIR=`pwd`
 cd /tmp && wget http://downloads.mysql.com/docs/sakila-db.zip && unzip sakila-db.zip
 mysql --user admin < sakila-db/sakila-schema.sql
