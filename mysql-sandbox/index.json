@@ -1,0 +1,31 @@
+{
+  "title": "Mysql Sandbox",
+  "description": "A placehold for practicing mysql operations",
+  "difficulty": "intermediate",
+  "imageid": "ubuntu:2004",
+  "time": 30,
+  "details": {
+    "intro": {"text": "intro.md"},
+    "finish": {"text": "finish.md"},
+    "steps": [
+      {"title":  "Step 1", "text":  "step1.md"}
+    ],
+    "assets": {
+      "client": [
+        {"file": "*.csv", "target": "~/"},
+        {"file": "*.ipynb", "target": "~/"},
+        {"file": "*.jar", "target": "~/"},
+      ]
+    }
+  },
+  "environment": {
+    "showdashboard": true,
+    "dashboards": [{"name": "Open spark server", "href": "https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com/vnc.html?autoconnect=true", "port": 8080},
+      {"name": "Open jupyter notebook", "href": "https://[[HOST_SUBDOMAIN]]-8888-[[KATACODA_HOST]].environments.katacoda.com/", "port": 8888}
+    ],
+    "hidefinish": true,
+    "hideintro": true,
+    "uilayout": "terminal",
+    "uimessage1": "\u001b[32mBrought to you by Xin Huang.\u001b[m\r\n"
+  }
+}
