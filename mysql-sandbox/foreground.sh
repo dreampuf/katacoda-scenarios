@@ -19,7 +19,7 @@ docker exec -e MYSQL_PASSWORD=$MYSQL_PASSWORD mysql1 \
   mysql --connect-expired-password -uroot -p$MYSQL_PASSWORD \
   -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';"
 cat <<EOF >/tmp/setup.sql
-CREATE USER 'admin'@'%' IDENTIFIED BY 'password';
+CREATE USER 'admin'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
 GRANT ALL PRIVILEGES ON * . * TO 'admin'@'%';
 FLUSH PRIVILEGES;
 EOF
@@ -28,15 +28,16 @@ docker exec mysql1 \
 export MYSQL_HOST=0.0.0.0
 export MYSQL_PWD=password
 
-apt-get update && apt-get install -Vy mariadb-client < "/dev/null"
-DIR=`pwd`
-cd /tmp && wget http://downloads.mysql.com/docs/sakila-db.zip && unzip sakila-db.zip
-mysql --user admin < sakila-db/sakila-schema.sql
-mysql --user admin < sakila-db/sakila-data.sql
-cd $DIR
+apt-get update && apt-get install -Vy mysql-client-8.0 < "/dev/null"
+cd /tmp && \
+  wget http://downloads.mysql.com/docs/sakila-db.zip && \
+  unzip sakila-db.zip && \
+  mysql --user admin < sakila-db/sakila-schema.sql && \
+  mysql --user admin < sakila-db/sakila-data.sql
 echo "Environment is setup and ready to go"
-
-#mysql --user=admin
-
 echo "The IP address for this environment is [[HOST_IP]]"
 echo "The URL to access Port 80 is [[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].[[KATACODA_DOMAIN]]"
+mysql --user=admin
+
+show databases;
+use sakila;
