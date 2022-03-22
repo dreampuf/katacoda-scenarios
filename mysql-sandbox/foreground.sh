@@ -28,7 +28,7 @@ docker exec mysql1 \
 export MYSQL_HOST=0.0.0.0
 export MYSQL_PWD=password
 
-apt-get update && apt-get install -Vy mysql-client-8.0 < "/dev/null"
+apt-get -qq update && apt-get -qq install -y mysql-client-8.0 < "/dev/null"
 cd /tmp && \
   wget http://downloads.mysql.com/docs/sakila-db.zip && \
   unzip sakila-db.zip && \
@@ -39,5 +39,7 @@ echo "The IP address for this environment is [[HOST_IP]]"
 echo "The URL to access Port 80 is [[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].[[KATACODA_DOMAIN]]"
 mysql --user=admin
 
+SET GLOBAL log_bin = ON;
+SHOW BINARY LOGS;
 show databases;
 use sakila;
