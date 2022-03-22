@@ -10,9 +10,10 @@ docker run \
   --user=mysql \
   --server-id=1 \
   --log-bin=/var/lib/mysql/mysql-bin.log
+echo "Starting server"
 while [ "`docker inspect --format='{{.State.Health.Status}}' mysql1`" != "healthy" ]; do
-  echo "Starting server..."
-  sleep 5
+  echo -n "."
+  sleep 3
 done
 MYSQL_PASSWORD=$(docker logs mysql1 2>&1 | grep GENERATED | cut -d ' ' -f5)
 docker exec -e MYSQL_PASSWORD=$MYSQL_PASSWORD mysql1 \
@@ -25,10 +26,10 @@ FLUSH PRIVILEGES;
 EOF
 docker exec mysql1 \
   mysql -uroot -ppassword -e "`cat /tmp/setup.sql`"
+apt-get -qq update && apt-get -qq install -y mysql-client-8.0 < "/dev/null"
 export MYSQL_HOST=0.0.0.0
 export MYSQL_PWD=password
 
-apt-get -qq update && apt-get -qq install -y mysql-client-8.0 < "/dev/null"
 cd /tmp && \
   wget http://downloads.mysql.com/docs/sakila-db.zip && \
   unzip sakila-db.zip && \
